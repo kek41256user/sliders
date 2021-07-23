@@ -6,7 +6,9 @@ function App() {
   const [people, setPeople] = useState(data);
   const [index, setIndex] = useState(0);
 
-  return <section className="section">
+  return ( 
+  <section className="section">
+  
   <div className="title">
     <h2>
       <span>/</span>reviews
@@ -16,7 +18,15 @@ function App() {
           {people.map((person, personIndex) => {
             const {id, image, name, title, quote} = person;
 
-            return ( <article key={id}>
+            let position = 'nextSlide';
+            if(personIndex === index) {
+              position = 'activeSlide';
+            }
+            if(personIndex === index - 1) {
+              position = 'lastSlide';
+            }
+            return ( 
+            <article className={position} key={id}>
               <img src={image} alt={name} className='person-img'/>
               <h4>{name}</h4>
               <p className="title">{title}</p>
@@ -32,7 +42,7 @@ function App() {
             <FiChevronRight/>
           </button>
         </div>
-        </section>;
-}
+        </section> 
+  )};
 
 export default App;
